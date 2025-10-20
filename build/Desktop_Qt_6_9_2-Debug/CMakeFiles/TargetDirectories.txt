@@ -1,0 +1,9 @@
+/home/zaxufl/Pulpit/Coding/qtMain/build/Desktop_Qt_6_9_2-Debug/CMakeFiles/qtMain.dir
+/home/zaxufl/Pulpit/Coding/qtMain/build/Desktop_Qt_6_9_2-Debug/CMakeFiles/edit_cache.dir
+/home/zaxufl/Pulpit/Coding/qtMain/build/Desktop_Qt_6_9_2-Debug/CMakeFiles/rebuild_cache.dir
+/home/zaxufl/Pulpit/Coding/qtMain/build/Desktop_Qt_6_9_2-Debug/CMakeFiles/list_install_components.dir
+/home/zaxufl/Pulpit/Coding/qtMain/build/Desktop_Qt_6_9_2-Debug/CMakeFiles/install.dir
+/home/zaxufl/Pulpit/Coding/qtMain/build/Desktop_Qt_6_9_2-Debug/CMakeFiles/install/local.dir
+/home/zaxufl/Pulpit/Coding/qtMain/build/Desktop_Qt_6_9_2-Debug/CMakeFiles/install/strip.dir
+/home/zaxufl/Pulpit/Coding/qtMain/build/Desktop_Qt_6_9_2-Debug/CMakeFiles/qtMain_autogen_timestamp_deps.dir
+/home/zaxufl/Pulpit/Coding/qtMain/build/Desktop_Qt_6_9_2-Debug/CMakeFiles/qtMain_autogen.dir
