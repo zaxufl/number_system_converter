@@ -2,19 +2,28 @@
 #define NUMBERS_H
 
 #include <string>
+#include <variant>
 #include <vector>
 using namespace std;
 
 class Numbers
 {
 private:
-    vector<string> number_system{"decimal", "binary", "octal", "hexadecimal"};
-    string from_number;
+    static vector<string> number_system;
+    string from;
+    string to;
+    variant<string, double> user_num{};
 
 public:
     Numbers();
-    void from_system();
     static void cin_clear();
+    static string selecting_system(string);
+    void from_system();
+    void to_system();
+    void select_num();
+    static double checking_num();
+    void checking_hex();
+    void decimal_to_binary();
 };
 
 #endif // NUMBERS_H

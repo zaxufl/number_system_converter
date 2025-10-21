@@ -8,17 +8,11 @@ void cin_clear();
 
 int main()
 {
-    qInfo() << "Welcome to number system converter.";
-    qInfo() << "\tDecimal";
-    qInfo() << "\tBinary";
-    qInfo() << "\tOcatl";
-    qInfo() << "\tHexadecimal";
-
-    qInfo();
-
     Numbers convert;
 
     convert.from_system();
+
+    convert.to_system();
 
     return 0;
 }
