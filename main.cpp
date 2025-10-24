@@ -14,6 +14,8 @@ int main()
 
     convert.to_system();
 
+    convert.select_num();
+
     return 0;
 }
 

@@ -70,11 +70,15 @@ void Numbers::select_num()
     } else if (from == "decimal") {
         user_num = Numbers::checking_num();
     }
+
+    if (to == "binary") {
+        Numbers::decimal_to_binary(get<int>(user_num));
+    }
 }
 
-double Numbers::checking_num()
+int Numbers::checking_num()
 {
-    double num;
+    int num;
 
     while (true) {
         cin >> num;
@@ -83,7 +87,19 @@ double Numbers::checking_num()
             cout << "Wrong number, try again: ";
             Numbers::cin_clear();
         } else {
-            break;
+            return num;
         }
     }
+}
+
+void Numbers::decimal_to_binary(int &user_num)
+{
+    string ans{};
+
+    while (user_num > 0) {
+        ans += to_string(user_num % 2);
+        user_num /= 2;
+    }
+
+    qInfo() << "Result: " << ans;
 }

@@ -12,7 +12,7 @@ private:
     static vector<string> number_system;
     string from;
     string to;
-    variant<string, double> user_num{};
+    variant<string, int> user_num{};
 
 public:
     Numbers();
@@ -21,9 +21,9 @@ public:
     void from_system();
     void to_system();
     void select_num();
-    static double checking_num();
+    static int checking_num();
     void checking_hex();
-    void decimal_to_binary();
+    static void decimal_to_binary(int &);
 };
 
 #endif // NUMBERS_H
