@@ -16,6 +16,8 @@ int main()
 
     convert.select_num();
 
+    convert.show_answer();
+
     return 0;
 }
 
