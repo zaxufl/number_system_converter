@@ -15,6 +15,7 @@ private:
     string to;
     variant<string, double> user_num{};
     static unordered_map<string, string> base_2_to_4;
+    static unordered_map<string, string> base_2_to_8;
 
 public:
     Numbers();
@@ -27,7 +28,7 @@ public:
     void checking_hex();
     static string decimal_to_binary(double);
     static string calculating_to_binary(int);
-    static string from_2_to_4(string);
+    static string from_2_to_X(string, int, unordered_map<string, string>);
     void show_answer();
 };
 

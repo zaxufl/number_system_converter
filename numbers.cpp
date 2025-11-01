@@ -19,6 +19,15 @@ unordered_map<string, string> Numbers::base_2_to_4{{"00", "0"},
                                                    {"10", "2"},
                                                    {"11", "3"}};
 
+unordered_map<string, string> Numbers::base_2_to_8{{"000", "0"},
+                                                   {"001", "1"},
+                                                   {"010", "2"},
+                                                   {"011", "3"},
+                                                   {"100", "4"},
+                                                   {"101", "5"},
+                                                   {"110", "6"},
+                                                   {"111", "7"}};
+
 Numbers::Numbers()
 {
     qInfo() << "Welcome to number system converter.";
@@ -79,9 +88,10 @@ void Numbers::select_num()
 {
     user_num = Numbers::checking_num();
     user_num = Numbers::decimal_to_binary(get<double>(user_num));
-    if (from == "decimal" && to == "quaternary") {
-        user_num = Numbers::from_2_to_4(get<string>(user_num));
-    } else if (from == "222") {
+    if (to == "quaternary") {
+        user_num = Numbers::from_2_to_X(get<string>(user_num), 2, base_2_to_4);
+    } else if (to == "octal") {
+        user_num = Numbers::from_2_to_X(get<string>(user_num), 3, base_2_to_8);
     }
 }
 
@@ -129,7 +139,7 @@ string Numbers::decimal_to_binary(double user_num)
 
         string zeros{"0", multipler};
 
-        int num_right{};
+        int &&num_right{};
         num_right = stoi(right);
         result = Numbers::calculating_to_binary(left);
         result += "." + zeros + Numbers::calculating_to_binary(num_right);
@@ -158,20 +168,22 @@ string Numbers::calculating_to_binary(int num)
     return s_num;
 }
 
-string Numbers::from_2_to_4(string num)
+string Numbers::from_2_to_X(string num, int n, unordered_map<string, string> base_type)
 {
     string starting_num;
 
-    if (num.length() % 2 != 0) {
-        starting_num += "0" + num;
+    if (num.length() % n != 0) {
+        starting_num = string(n - (num.length() % n), '0') + num;
     } else {
         starting_num = num;
     }
 
+    cout << "Starting num: " << starting_num << '\n';
+
     string result;
 
-    for (int i{}; i < starting_num.length() / 2; ++i) {
-        result += base_2_to_4[starting_num.substr(i * 2, 2)];
+    for (int i{}; i < starting_num.length() / n; ++i) {
+        result += base_type[starting_num.substr(i * n, n)];
     }
 
     return result;
