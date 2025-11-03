@@ -28,6 +28,23 @@ unordered_map<string, string> Numbers::base_2_to_8{{"000", "0"},
                                                    {"110", "6"},
                                                    {"111", "7"}};
 
+unordered_map<string, string> Numbers::base_2_to_16{{"0000", "0"},
+                                                    {"0001", "1"},
+                                                    {"0010", "2"},
+                                                    {"0011", "3"},
+                                                    {"0100", "4"},
+                                                    {"0101", "5"},
+                                                    {"0110", "6"},
+                                                    {"0111", "7"},
+                                                    {"1000", "8"},
+                                                    {"1001", "9"},
+                                                    {"1010", "A"},
+                                                    {"1011", "B"},
+                                                    {"1100", "C"},
+                                                    {"1101", "D"},
+                                                    {"1110", "E"},
+                                                    {"1111", "F"}};
+
 Numbers::Numbers()
 {
     qInfo() << "Welcome to number system converter.";
@@ -86,16 +103,20 @@ void Numbers::to_system()
 
 void Numbers::select_num()
 {
-    user_num = Numbers::checking_num();
-    user_num = Numbers::decimal_to_binary(get<double>(user_num));
-    if (to == "quaternary") {
-        user_num = Numbers::from_2_to_X(get<string>(user_num), 2, base_2_to_4);
-    } else if (to == "octal") {
-        user_num = Numbers::from_2_to_X(get<string>(user_num), 3, base_2_to_8);
+    if (from == "decimal") {
+        user_num = Numbers::checking_decimal();
+        user_num = Numbers::decimal_to_binary(get<double>(user_num));
+        if (to == "quaternary") {
+            user_num = Numbers::from_2_to_X(get<string>(user_num), 2, base_2_to_4);
+        } else if (to == "octal") {
+            user_num = Numbers::from_2_to_X(get<string>(user_num), 3, base_2_to_8);
+        } else if (to == "hexadecimal") {
+            user_num = Numbers::from_2_to_X(get<string>(user_num), 4, base_2_to_16);
+        }
     }
 }
 
-double Numbers::checking_num()
+double Numbers::checking_decimal()
 {
     double num;
 
@@ -178,12 +199,16 @@ string Numbers::from_2_to_X(string num, int n, unordered_map<string, string> bas
         starting_num = num;
     }
 
-    cout << "Starting num: " << starting_num << '\n';
+    // cout << "Starting num: " << starting_num << '\n';
 
     string result;
 
-    for (int i{}; i < starting_num.length() / n; ++i) {
-        result += base_type[starting_num.substr(i * n, n)];
+    int loop{};
+
+    cout << '\n' << starting_num << '\n';
+
+    for (size_t i{}; i < starting_num.length() / 2; i += n) {
+        result += base_type[starting_num.substr(i, n)];
     }
 
     return result;
