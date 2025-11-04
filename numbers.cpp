@@ -3,7 +3,6 @@
 #include <algorithm>
 #include <iostream>
 #include <limits>
-#include <unordered_map>
 using namespace std;
 
 vector<string> Numbers::number_system{
@@ -13,37 +12,6 @@ vector<string> Numbers::number_system{
     "octal",
     "hexadecimal",
 };
-
-unordered_map<string, string> Numbers::base_2_to_4{{"00", "0"},
-                                                   {"01", "1"},
-                                                   {"10", "2"},
-                                                   {"11", "3"}};
-
-unordered_map<string, string> Numbers::base_2_to_8{{"000", "0"},
-                                                   {"001", "1"},
-                                                   {"010", "2"},
-                                                   {"011", "3"},
-                                                   {"100", "4"},
-                                                   {"101", "5"},
-                                                   {"110", "6"},
-                                                   {"111", "7"}};
-
-unordered_map<string, string> Numbers::base_2_to_16{{"0000", "0"},
-                                                    {"0001", "1"},
-                                                    {"0010", "2"},
-                                                    {"0011", "3"},
-                                                    {"0100", "4"},
-                                                    {"0101", "5"},
-                                                    {"0110", "6"},
-                                                    {"0111", "7"},
-                                                    {"1000", "8"},
-                                                    {"1001", "9"},
-                                                    {"1010", "A"},
-                                                    {"1011", "B"},
-                                                    {"1100", "C"},
-                                                    {"1101", "D"},
-                                                    {"1110", "E"},
-                                                    {"1111", "F"}};
 
 Numbers::Numbers()
 {
@@ -105,20 +73,22 @@ void Numbers::select_num()
 {
     if (from == "decimal") {
         user_num = Numbers::checking_decimal();
-        user_num = Numbers::decimal_to_binary(get<double>(user_num));
         if (to == "quaternary") {
-            user_num = Numbers::from_2_to_X(get<string>(user_num), 2, base_2_to_4);
+            ans = Numbers::from_decimal(user_num, 4);
         } else if (to == "octal") {
-            user_num = Numbers::from_2_to_X(get<string>(user_num), 3, base_2_to_8);
+            ans = Numbers::from_decimal(user_num, 8);
         } else if (to == "hexadecimal") {
-            user_num = Numbers::from_2_to_X(get<string>(user_num), 4, base_2_to_16);
+            ans = Numbers::from_decimal(user_num, 16);
+        } else if (to == "binary") {
+            ans = Numbers::from_decimal(user_num, 2);
+        } else {
         }
     }
 }
 
-double Numbers::checking_decimal()
+int Numbers::checking_decimal()
 {
-    double num;
+    int num;
 
     cout << "Select number: ";
 
@@ -134,54 +104,43 @@ double Numbers::checking_decimal()
     }
 }
 
-string Numbers::decimal_to_binary(double user_num)
+string Numbers::from_decimal(int user_num, int n)
 {
     string result;
 
-    if (fmod(user_num, 1) == 0) {
-        int num{};
-        num = user_num;
-        result = Numbers::calculating_to_binary(num);
-    } else {
-        int left{};
-        left = trunc(user_num);
-
-        string right{};
-        right = to_string(user_num - trunc(user_num)).substr(2);
-        size_t multipler{};
-
-        for (char c : right) {
-            if (c == '0') {
-                ++multipler;
-            } else {
-                break;
-            }
-        }
-
-        string zeros{"0", multipler};
-
-        int &&num_right{};
-        num_right = stoi(right);
-        result = Numbers::calculating_to_binary(left);
-        result += "." + zeros + Numbers::calculating_to_binary(num_right);
-    }
-
-    result = result.substr(0, 18);
+    int num{};
+    num = user_num;
+    result = Numbers::from_10_to_24816(num, n);
 
     return result;
 }
 
-string Numbers::calculating_to_binary(int num)
+string Numbers::from_10_to_24816(int num, int n)
 {
     string s_num{};
 
     while (num > 0) {
-        s_num += to_string(num % 2);
-        num /= 2;
+        int divider{num % n};
 
-        if (s_num.length() > 18) {
-            break;
+        if (n == 16 && divider >= 10) {
+            if (divider == 10) {
+                s_num += "A";
+            } else if (divider == 11) {
+                s_num += "B";
+            } else if (divider == 12) {
+                s_num += "C";
+            } else if (divider == 13) {
+                s_num += "D";
+            } else if (divider == 14) {
+                s_num += "E";
+            } else {
+                s_num += "F";
+            }
+        } else {
+            s_num += to_string(divider);
         }
+
+        num /= n;
     }
 
     reverse(s_num.begin(), s_num.end());
@@ -189,33 +148,7 @@ string Numbers::calculating_to_binary(int num)
     return s_num;
 }
 
-string Numbers::from_2_to_X(string num, int n, unordered_map<string, string> base_type)
-{
-    string starting_num;
-
-    if (num.length() % n != 0) {
-        starting_num = string(n - (num.length() % n), '0') + num;
-    } else {
-        starting_num = num;
-    }
-
-    // cout << "Starting num: " << starting_num << '\n';
-
-    string result;
-
-    int loop{};
-
-    cout << '\n' << starting_num << '\n';
-
-    for (size_t i{}; i < starting_num.length() / 2; i += n) {
-        result += base_type[starting_num.substr(i, n)];
-    }
-
-    return result;
-}
-
 void Numbers::show_answer()
 {
-    cout << "Converting number from " << from << " to " << to << " is: " << get<string>(user_num)
-         << '\n';
+    cout << "Converting number from " << from << " to " << to << " is: " << ans << '\n';
 }
