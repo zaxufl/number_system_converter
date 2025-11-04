@@ -2,6 +2,7 @@
 #define NUMBERS_H
 
 #include <string>
+#include <unordered_map>
 #include <vector>
 using namespace std;
 
@@ -9,6 +10,9 @@ class Numbers
 {
 private:
     static vector<string> number_system;
+    static unordered_map<string, string> bin_to_4;
+    static unordered_map<string, string> bin_to_8;
+    static unordered_map<string, string> bin_to_16;
     string from;
     string to;
     int user_num{};
@@ -22,9 +26,11 @@ public:
     void to_system();
     void select_num();
     static int checking_decimal();
-    void checking_hex();
+    static int checking_binary();
     static string from_decimal(int, int);
     static string from_10_to_24816(int, int);
+    static string from_2_to_4816(int, int, unordered_map<string, string> &);
+    static string from_2_to_10(int);
     void show_answer();
 };
 
