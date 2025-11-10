@@ -50,6 +50,16 @@ unordered_map<string, string> Numbers::bin_to_16{
     {"1111", "F"},
 };
 
+unordered_map<char, string> Numbers::quater_to_2{
+    {'0', "00"},
+    {'1', "01"},
+    {'2', "10"},
+    {'3', "11"},
+};
+
+vector<char> Numbers::binary_nums{'0', '1'};
+vector<char> Numbers::quaternary_nums{'0', '1', '2', '3'};
+
 Numbers::Numbers()
 {
     qInfo() << "Welcome to number system converter.";
@@ -124,7 +134,7 @@ void Numbers::select_num()
     }
 
     if (from == "binary") {
-        user_num = Numbers::checking_binary();
+        user_num = Numbers::checking_systems(Numbers::binary_nums);
         if (to == "quaternary") {
             ans = Numbers::from_2_to_4816(user_num, 2, bin_to_4);
         } else if (to == "octal") {
@@ -133,6 +143,13 @@ void Numbers::select_num()
             ans = Numbers::from_2_to_4816(user_num, 4, bin_to_16);
         } else {
             ans = Numbers::from_2_to_10(user_num);
+        }
+    }
+
+    if (from == "quaternary") {
+        user_num = Numbers::checking_systems(Numbers::quaternary_nums);
+        if (to == "binary") {
+            ans = Numbers::from_4_to_2816(quater_to_2, user_num);
         }
     }
 }
@@ -164,7 +181,7 @@ string Numbers::from_decimal(int user_num, int n)
     return result;
 }
 
-int Numbers::checking_binary()
+int Numbers::checking_systems(vector<char> nums)
 {
     string binary;
     bool checking{true};
@@ -173,8 +190,8 @@ int Numbers::checking_binary()
         cin >> binary;
 
         for (char &c : binary) {
-            if ((c != '0' && c != '1') || binary.length() > 10) {
-                cout << "This is not a binary number, try again: ";
+            if (find(nums.begin(), nums.end(), c) == nums.end() || binary.length() > 10) {
+                cout << "This is not a binary number or you number is too long, try again: ";
                 Numbers::cin_clear();
                 break;
             }
@@ -229,25 +246,16 @@ string Numbers::from_2_to_4816(int num, int type, unordered_map<string, string> 
     string result;
     string holder{to_string(num)};
     int checker{static_cast<int>(holder.length()) % type};
-
-    cout << "this is holder length: " << holder.length() << '\n';
-    cout << "this is type: " << type << '\n';
-    cout << "this is checker: " << checker << '\n';
     int adder{type - checker};
 
     if (holder.length() % type != 0) {
         holder = string(adder, '0') + holder;
     }
 
-    cout << "this is holder: " << holder << '\n';
-
     for (int i{}; i < holder.length(); i += type) {
         string sub{holder.substr(i, type)};
-        cout << "this is sub: " << sub << '\n';
         result += system[sub];
     }
-
-    cout << "this is result: " << result << '\n';
 
     return result;
 }
@@ -271,6 +279,24 @@ string Numbers::from_2_to_10(int num)
     ans = to_string(result);
 
     return ans;
+}
+
+string Numbers::from_4_to_2816(unordered_map<char, string> sys, int user_num)
+{
+    string res;
+    string user_s{};
+    user_s = to_string(user_num);
+
+    for (char c : user_s) {
+        res += sys[c];
+    }
+
+    int ans{};
+    ans = stoi(res);
+
+    res = to_string(ans);
+
+    return res;
 }
 
 void Numbers::show_answer()
