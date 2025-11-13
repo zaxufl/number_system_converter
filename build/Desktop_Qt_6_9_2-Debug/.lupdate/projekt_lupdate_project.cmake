@@ -1,0 +1,11 @@
+set(lupdate_project_file "/home/zaxufl/Pulpit/Coding/projekt/CMakeLists.txt")
+set(lupdate_translations "/home/zaxufl/Pulpit/Coding/projekt/projekt_pl_PL.ts")
+set(lupdate_include_paths "")
+set(lupdate_sources "")
+set(lupdate_subproject_count 1)
+
+set(lupdate_subproject1_source_dir "/home/zaxufl/Pulpit/Coding/projekt")
+set(lupdate_subproject1_include_paths "/home/zaxufl/Pulpit/Coding/projekt/build/Desktop_Qt_6_9_2-Debug/projekt_autogen/include;/opt/Qt/6.9.2/gcc_64/include/QtCore;/opt/Qt/6.9.2/gcc_64/include;/opt/Qt/6.9.2/gcc_64/mkspecs/linux-g++;/opt/Qt/6.9.2/gcc_64/include")
+set(lupdate_subproject1_sources "/home/zaxufl/Pulpit/Coding/projekt/build/Desktop_Qt_6_9_2-Debug/projekt_autogen/mocs_compilation.cpp;main.cpp;systemnumber.h;systemnumber.cpp;/home/zaxufl/Pulpit/Coding/projekt/build/Desktop_Qt_6_9_2-Debug/.qt/rcc/projekt_translations.qrc;/home/zaxufl/Pulpit/Coding/projekt/build/Desktop_Qt_6_9_2-Debug/projekt_pl_PL.qm;/home/zaxufl/Pulpit/Coding/projekt/build/Desktop_Qt_6_9_2-Debug/.qt/rcc/qrc_projekt_translations.cpp;/home/zaxufl/Pulpit/Coding/projekt/build/Desktop_Qt_6_9_2-Debug/projekt_autogen/timestamp;/home/zaxufl/Pulpit/Coding/projekt/build/Desktop_Qt_6_9_2-Debug/projekt_pl_PL.qm.rule;/home/zaxufl/Pulpit/Coding/projekt/build/Desktop_Qt_6_9_2-Debug/.qt/rcc/qrc_projekt_translations.cpp.rule;/home/zaxufl/Pulpit/Coding/projekt/build/Desktop_Qt_6_9_2-Debug/projekt_autogen/timestamp.rule")
+set(lupdate_subproject1_excluded "")
+set(lupdate_subproject1_autogen_dir "/home/zaxufl/Pulpit/Coding/projekt/build/Desktop_Qt_6_9_2-Debug/projekt_autogen")

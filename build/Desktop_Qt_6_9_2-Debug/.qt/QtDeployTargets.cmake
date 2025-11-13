@@ -1,2 +1,2 @@
-set(__QT_DEPLOY_TARGET_qtMain_FILE /home/zaxufl/Pulpit/Coding/qtMain/build/Desktop_Qt_6_9_2-Debug/qtMain)
-set(__QT_DEPLOY_TARGET_qtMain_TYPE EXECUTABLE)
+set(__QT_DEPLOY_TARGET_projekt_FILE /home/zaxufl/Pulpit/Coding/projekt/build/Desktop_Qt_6_9_2-Debug/projekt)
+set(__QT_DEPLOY_TARGET_projekt_TYPE EXECUTABLE)

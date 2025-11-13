@@ -6,7 +6,7 @@
 # It is included in the main 'build.ninja'.
 
 # =============================================================================
-# Project: qtMain
+# Project: projekt
 # Configurations: Debug
 # =============================================================================
 # =============================================================================
@@ -14,7 +14,7 @@
 #############################################
 # Rule for compiling CXX files.
 
-rule CXX_COMPILER__qtMain_unscanned_Debug
+rule CXX_COMPILER__projekt_unscanned_Debug
   depfile = $DEP_FILE
   deps = gcc
   command = ${LAUNCHER}${CODE_CHECK}/bin/g++ $DEFINES $INCLUDES $FLAGS -MD -MT $out -MF $DEP_FILE -o $out -c $in
@@ -24,7 +24,7 @@ rule CXX_COMPILER__qtMain_unscanned_Debug
 #############################################
 # Rule for linking CXX executable.
 
-rule CXX_EXECUTABLE_LINKER__qtMain_Debug
+rule CXX_EXECUTABLE_LINKER__projekt_Debug
   command = $PRE_LINK && /bin/g++ $FLAGS $LINK_FLAGS $in -o $TARGET_FILE $LINK_PATH $LINK_LIBRARIES && $POST_BUILD
   description = Linking CXX executable $TARGET_FILE
   restat = $RESTAT
@@ -42,17 +42,8 @@ rule CUSTOM_COMMAND
 # Rule for re-running cmake.
 
 rule RERUN_CMAKE
-  command = /opt/Qt/Tools/CMake/bin/cmake --regenerate-during-build -S/home/zaxufl/Pulpit/Coding/qtMain -B/home/zaxufl/Pulpit/Coding/qtMain/build/Desktop_Qt_6_9_2-Debug
+  command = /opt/Qt/Tools/CMake/bin/cmake --regenerate-during-build -S/home/zaxufl/Pulpit/Coding/projekt -B/home/zaxufl/Pulpit/Coding/projekt/build/Desktop_Qt_6_9_2-Debug
   description = Re-running CMake...
-  generator = 1
-
-
-#############################################
-# Rule for re-checking globbed directories.
-
-rule VERIFY_GLOBS
-  command = /opt/Qt/Tools/CMake/bin/cmake -P /home/zaxufl/Pulpit/Coding/qtMain/build/Desktop_Qt_6_9_2-Debug/CMakeFiles/VerifyGlobs.cmake
-  description = Re-checking globbed directories...
   generator = 1
 
 

@@ -1,28 +1,23 @@
-#include <QDebug>
-#include "numbers.h"
+#include "systemnumber.h"
 #include <iostream>
-
-using namespace std;
-
-void cin_clear();
+using std::cout;
 
 int main()
 {
-    Numbers convert;
+    string first_message{"Which number system do you want to convert the number from?: "};
+    string second_message{"To what system number?: "};
 
-    convert.from_system();
+    SystemNumber converter;
 
-    convert.to_system();
+    converter.user_selecting_systems(first_message);
 
-    convert.select_num();
+    converter.user_selecting_systems(second_message);
 
-    convert.show_answer();
+    converter.user_selecting_number();
+
+    converter.choosing_calculating_system();
+
+    converter.print_result();
 
     return 0;
-}
-
-void cin_clear()
-{
-    cin.clear();
-    cin.ignore(numeric_limits<streamsize>::max(), '\n');
 }
